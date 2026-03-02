@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api & Json</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body class="space-y-7 px-7 ">
+
+
+    <h1 class="text-3xl font-bold mt-5">All Todo Tasks Are Here</h1>
+    <button onclick="loadPost()" class="cursor-pointer py-2 px-3 bg-blue-600 text-white rounded-md">Load Posts</button>
+    <section id="todo-container" class="mx-w-[1160px] mx-auto grid grid-cols-3 gap-5">
+        <div class="todo-card space-y-3 shadow-md px-6 py-4 bg-white rounded-lg flex justify-between gap-2.5">
+            <h2 class="text-2xl font-bold">Sample title</h2>
+            <p class="font-semibold text-gray-600 text-justify"><i class="fa-solid fa-square-check"></i> true</p>
+        </div>
+    </section>
+    
+
+
+    <script src="./todo.js"></script>
+</body>
+</html>
