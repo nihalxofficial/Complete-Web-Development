@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Position Property: Advanced Visual Guide</title>
+    <style>
+        :root {
+            --primary-dark: #0a0e17;
+            --secondary-dark: #111827;
+            --accent-blue: #2563eb;
+            --accent-blue-light: #3b82f6;
+            --accent-blue-lighter: #60a5fa;
+            --accent-cyan: #06b6d4;
+            --text-light: #f8fafc;
+            --text-gray: #cbd5e1;
+            --border-dark: #1e293b;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --gradient-primary: linear-gradient(145deg, #0f172a 0%, #1e3a8a 100%);
+            --gradient-accent: linear-gradient(90deg, #2563eb 0%, #06b6d4 100%);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 20%);
+        }
+        
+        /* Layout Container */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 30px;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-dark);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent-blue-light), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin-bottom: 25px;
+        }
+        
+        /* Stats Row */
+        .stats-row {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 15px 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-blue);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-blue-lighter);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Position Cards Grid - 3 columns for desktop */
+        .position-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .position-card {
+            flex: 1 1 calc(33.333% - 25px);
+            min-width: 300px;
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-dark);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .position-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.15);
+            border-color: var(--accent-blue);
+        }
+        
+        .position-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .position-card:hover::before {
+            opacity: 1;
+        }
+        
+        /* Card Header */
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-dark);
+        }
+        
+        .position-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-right: 20px;
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .static .position-icon { background: linear-gradient(145deg, #475569, #334155); }
+        .relative .position-icon { background: linear-gradient(145deg, #2563eb, #1d4ed8); }
+        .absolute .position-icon { background: linear-gradient(145deg, #f97316, #ea580c); }
+        .fixed .position-icon { background: linear-gradient(145deg, #059669, #047857); }
+        .sticky .position-icon { background: linear-gradient(145deg, #7c3aed, #6d28d9); }
+        
+        .position-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--text-light), var(--text-gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Card Content */
+        .card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .definition {
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .properties {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-dark);
+        }
+        
+        .properties h3 {
+            color: var(--accent-blue-lighter);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .properties h3::before {
+            content: '⚙️';
+            font-size: 1rem;
+        }
+        
+        .property-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .property-item {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-dark);
+        }
+        
+        .property-key {
+            font-weight: 600;
+            color: var(--accent-blue-lighter);
+        }
+        
+        /* Demo Area */
+        .demo-area {
+            border: 2px solid var(--border-dark);
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 25px;
+            min-height: 220px;
+            position: relative;
+            background: rgba(15, 23, 42, 0.4);
+            flex-grow: 1;
+            overflow: hidden;
+        }
+        
+        .demo-title {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .demo-element {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .static-demo .demo-element {
+            background: linear-gradient(145deg, #475569, #334155);
+        }
+        
+        .relative-demo .demo-element {
+            background: linear-gradient(145deg, #2563eb, #1d4ed8);
+            position: relative;
+            top: 25px;
+            left: 25px;
+        }
+        
+        .absolute-demo .parent-element {
+            width: 100%;
+            height: 100%;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--accent-blue);
+        }
+        
+        .absolute-demo .demo-element {
+            background: linear-gradient(145deg, #f97316, #ea580c);
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+        }
+        
+        .fixed-demo .demo-element {
+            background: linear-gradient(145deg, #059669, #047857);
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            z-index: 1000;
+        }
+        
+        .sticky-demo .scroll-content {
+            height: 250px;
+            overflow-y: auto;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.3);
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .sticky-demo .demo-element {
+            background: linear-gradient(145deg, #7c3aed, #6d28d9);
+            position: sticky;
+            top: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .scroll-content p {
+            padding: 15px;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent-blue);
+        }
+        
+        /* Code Example */
+        .code-example {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-dark);
+            overflow-x: auto;
+        }
+        
+        .css-selector {
+            color: var(--accent-blue-lighter);
+        }
+        
+        .css-property {
+            color: var(--accent-cyan);
+        }
+        
+        .css-value {
+            color: #fbbf24;
+        }
+        
+        /* Comparison Table - 2 columns layout */
+        .comparison-section {
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-dark);
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(to right, var(--accent-blue-light), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+        
+        .comparison-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        
+        .comparison-card {
+            flex: 1 1 calc(50% - 25px);
+            min-width: 300px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid var(--border-dark);
+        }
+        
+        .comparison-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-dark);
+        }
+        
+        .comparison-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            color: white;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th {
+            text-align: left;
+            padding: 15px;
+            background: rgba(15, 23, 42, 0.5);
+            color: var(--accent-blue-lighter);
+            font-weight: 600;
+            border-bottom: 2px solid var(--border-dark);
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-dark);
+            color: var(--text-gray);
+        }
+        
+        .comparison-table tr:hover {
+            background: rgba(37, 99, 235, 0.05);
+        }
+        
+        /* Fixed Demo Button */
+        .fixed-demo-button {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--gradient-accent);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(37, 99, 235, 0.3);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .fixed-demo-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-dark);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .position-card {
+                flex: 1 1 calc(50% - 25px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 15px;
+            }
+            
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .position-card, .comparison-card {
+                flex: 1 1 100%;
+            }
+            
+            .stats-row {
+                flex-wrap: wrap;
+            }
+            
+            .position-grid, .comparison-grid {
+                gap: 20px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">CSS Position Property</h1>
+                <p class="subtitle">Master the five essential positioning values with interactive visual examples. Understand how static, relative, absolute, fixed, and sticky positioning work in modern web development.</p>
+                
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Position Values</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">100%</span>
+                        <span class="stat-label">Visual Examples</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">Real-time</span>
+                        <span class="stat-label">Interactive Demos</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Position Cards Grid - 3 columns -->
+        <div class="position-grid">
+            <!-- Static Card -->
+            <div class="position-card static">
+                <div class="card-header">
+                    <div class="position-icon">S</div>
+                    <h2 class="position-title">Static</h2>
+                </div>
+                
+                <div class="card-content">
+                    <div class="definition">
+                        <p>The default position value. Elements follow normal document flow. Offset properties (top, right, bottom, left) have no effect.</p>
+                    </div>
+                    
+                    <div class="properties">
+                        <h3>Key Properties</h3>
+                        <div class="property-list">
+                            <div class="property-item">
+                                <span class="property-key">Flow:</span> Normal Document Flow
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">Offset:</span> Not Applicable
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">Stacking:</span> Default
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-area static-demo">
+                        <div class="demo-title">Static Positioning Demo</div>
+                        <div class="demo-element">Static</div>
+                        <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-gray);">This element cannot be moved with positioning properties.</p>
+                    </div>
+                    
+                    <div class="code-example">
+                        <span class="css-selector">.element</span> {<br>
+                        &nbsp;&nbsp;<span class="css-property">position</span>: <span class="css-value">static</span>;<br>
+                        &nbsp;&nbsp;<span class="css-comment">/* top, right, bottom, left have NO effect */</span><br>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Relative Card -->
+            <div class="position-card relative">
+                <div class="card-header">
+                    <div class="position-icon">R</div>
+                    <h2 class="position-title">Relative</h2>
+                </div>
+                
+                <div class="card-content">
+                    <div class="definition">
+                        <p>Positioned relative to its normal position. Offset properties move it from original location. Original space in document flow is preserved.</p>
+                    </div>
+                    
+                    <div class="properties">
+                        <h3>Key Properties</h3>
+                        <div class="property-list">
+                            <div class="property-item">
+                                <span class="property-key">Flow:</span> Space Preserved
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">Offset:</span> Top, Right, Bottom, Left
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">Reference:</span> Original Position
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-area relative-demo">
+                        <div class="demo-title">Relative Positioning Demo</div>
+                        <div class="demo-element">Relative</div>
+                        <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-gray);">Moved 25px from top and left of original position. Original space remains reserved.</p>
+                    </div>
+                    
+                    <div class="code-example">
+                        <span class="css-selector">.element</span> {<br>
+                        &nbsp;&nbsp;<span class="css-property">position</span>: <span class="css-value">relative</span>;<br>
+                        &nbsp;&nbsp;<span class="css-property">top</span>: <span class="css-value">25px</span>;<br>
+                        &nbsp;&nbsp;<span class="css-property">left</span>: <span class="css-value">25px</span>;<br>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Absolute Card -->
+            <div class="position-card absolute">
+                <div class="card-header">
+                    <div class="position-icon">A</div>
+                    <h2 class="position-title">Absolute</h2>
+                </div>
+                
+                <div class="card-content">
+                    <div class="definition">
+                        <p>Removed from normal document flow. Positioned relative to nearest positioned ancestor. If none exists, uses initial containing block.</p>
+                    </div>
+                    
+                    <div class="properties">
+                        <h3>Key Properties</h3>
+                        <div class="property-list">
+                            <div class="property-item">
+                                <span class="property-key">Flow:</span> Removed
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">Offset:</span> Top, Right, Bottom, Left
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">Reference:</span> Positioned Ancestor
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-area absolute-demo">
+                        <div class="demo-title">Absolute Positioning Demo</div>
+                        <div class="parent-element">
+                            Parent Container (position: relative)
+                            <div class="demo-element">Absolute</div>
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-gray);">Positioned 30px from top and right of parent container.</p>
+                    </div>
+                    
+                    <div class="code-example">
+                        <span class="css-selector">.parent</span> {<br>
+                        &nbsp;&nbsp;<span class="css-property">position</span>: <span class="css-value">relative</span>;<br>
+                        }<br><br>
+                        <span class="css-selector">.child</span> {<br>
+                        &nbsp;&nbsp;<span class="css-property">position</span>: <span class="css-value">absolute</span>;<br>
+                        &nbsp;&nbsp;<span class="css-property">top</span>: <span class="css-value">30px</span>;<br>
+                        &nbsp;&nbsp;<span class="css-property">right</span>: <span class="css-value">30px</span>;<br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Second Row of Cards - 2 columns layout -->
+        <div class="position-grid">
+            <!-- Fixed Card -->
+            <div class="position-card fixed">
+                <div class="card-header">
+                    <div class="position-icon">F</div>
+                    <h2 class="position-title">Fixed</h2>
+                </div>
+                
+                <div class="card-content">
+                    <div class="definition">
+                        <p>Removed from normal document flow. Positioned relative to viewport. Stays in same position during scrolling. Perfect for headers, modals, and navigation.</p>
+                    </div>
+                    
+                    <div class="properties">
+                        <h3>Key Properties</h3>
+                        <div class="property-list">
+                            <div class="property-item">
+                                <span class="property-key">Flow:</span> Removed
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">Offset:</span> Top, Right, Bottom, Left
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">Reference:</span> Viewport
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-area fixed-demo">
+                        <div class="demo-title">Fixed Positioning Demo</div>
+                        <div class="demo-element">Fixed</div>
+                        <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-gray);">This element stays fixed to bottom-right of viewport. Scroll to see it remain in position.</p>
+                    </div>
+                    
+                    <div class="code-example">
+                        <span class="css-selector">.element</span> {<br>
+                        &nbsp;&nbsp;<span class="css-property">position</span>: <span class="css-value">fixed</span>;<br>
+                        &nbsp;&nbsp;<span class="css-property">bottom</span>: <span class="css-value">30px</span>;<br>
+                        &nbsp;&nbsp;<span class="css-property">right</span>: <span class="css-value">30px</span>;<br>
+                        &nbsp;&nbsp;<span class="css-property">z-index</span>: <span class="css-value">1000</span>;<br>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sticky Card -->
+            <div class="position-card sticky">
+                <div class="card-header">
+                    <div class="position-icon">ST</div>
+                    <h2 class="position-title">Sticky</h2>
+                </div>
+                
+                <div class="card-content">
+                    <div class="definition">
+                        <p>Hybrid of relative and fixed positioning. Acts as relative until crossing specified threshold, then becomes fixed. Excellent for sticky headers and navigation.</p>
+                    </div>
+                    
+                    <div class="properties">
+                        <h3>Key Properties</h3>
+                        <div class="property-list">
+                            <div class="property-item">
+                                <span class="property-key">Flow:</span> Relative until threshold
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">Offset:</span> Defines stickiness threshold
+                            </div>
+                            <div class="property-item">
+                                <span class="property-key">Reference:</span> Scroll Container
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-area sticky-demo">
+                        <div class="demo-title">Sticky Positioning Demo</div>
+                        <div class="demo-element">Sticky (top: 20px)</div>
+                        <div class="scroll-content">
+                            <p>Scroll this content to see sticky behavior...</p>
+                            <p>Content line 1 - Keep scrolling</p>
+                            <p>Content line 2 - Element sticks at top</p>
+                            <p>Content line 3 - When threshold is reached</p>
+                            <p>Content line 4 - Continue scrolling</p>
+                            <p>Content line 5 - To see the effect</p>
+                            <p>Content line 6 - Sticky positioning</p>
+                            <p>Content line 7 - Is powerful for UX</p>
+                            <p>Content line 8 - Try it now!</p>
+                            <p>Content line 9 - Almost there</p>
+                            <p>Content line 10 - Bottom reached</p>
+                        </div>
+                    </div>
+                    
+                    <div class="code-example">
+                        <span class="css-selector">.element</span> {<br>
+                        &nbsp;&nbsp;<span class="css-property">position</span>: <span class="css-value">sticky</span>;<br>
+                        &nbsp;&nbsp;<span class="css-property">top</span>: <span class="css-value">20px</span>;<br>
+                        &nbsp;&nbsp;<span class="css-comment">/* Becomes fixed when 20px from top */</span><br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Comparison Section - 2 columns -->
+        <section class="comparison-section">
+            <h2 class="section-title">Position Property Comparison</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <div class="comparison-header">
+                        <div class="comparison-icon" style="background: linear-gradient(145deg, #475569, #334155);">S</div>
+                        <h3 style="font-size: 1.5rem; color: var(--text-light);">Static vs Relative</h3>
+                    </div>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Static</th>
+                                <th>Relative</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Document Flow</td>
+                                <td>Normal flow</td>
+                                <td>Normal flow (space preserved)</td>
+                            </tr>
+                            <tr>
+                                <td>Offset Properties</td>
+                                <td>Ignored</td>
+                                <td>Work relative to original position</td>
+                            </tr>
+                            <tr>
+                                <td>Use Case</td>
+                                <td>Default positioning</td>
+                                <td>Minor adjustments, z-index context</td>
+                            </tr>
+                            <tr>
+                                <td>Layout Impact</td>
+                                <td>No impact</td>
+                                <td>No impact on other elements</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="comparison-card">
+                    <div class="comparison-header">
+                        <div class="comparison-icon" style="background: linear-gradient(145deg, #2563eb, #1d4ed8);">R</div>
+                        <div class="comparison-icon" style="background: linear-gradient(145deg, #f97316, #ea580c); margin-left: 10px;">A</div>
+                        <h3 style="font-size: 1.5rem; color: var(--text-light); margin-left: 15px;">Relative vs Absolute</h3>
+                    </div>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Relative</th>
+                                <th>Absolute</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Document Flow</td>
+                                <td>Remains in flow</td>
+                                <td>Removed from flow</td>
+                            </tr>
+                            <tr>
+                                <td>Position Reference</td>
+                                <td>Its original position</td>
+                                <td>Nearest positioned ancestor</td>
+                            </tr>
+                            <tr>
+                                <td>Space Preservation</td>
+                                <td>Original space reserved</td>
+                                <td>No space reserved</td>
+                            </tr>
+                            <tr>
+                                <td>Use Case</td>
+                                <td>Layout adjustments</td>
+                                <td>Overlays, tooltips, custom UI</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="comparison-grid" style="margin-top: 25px;">
+                <div class="comparison-card">
+                    <div class="comparison-header">
+                        <div class="comparison-icon" style="background: linear-gradient(145deg, #059669, #047857);">F</div>
+                        <h3 style="font-size: 1.5rem; color: var(--text-light); margin-left: 20px;">Fixed Positioning</h3>
+                    </div>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Document Flow</td>
+                                <td>Removed from flow</td>
+                            </tr>
+                            <tr>
+                                <td>Position Reference</td>
+                                <td>Viewport (browser window)</td>
+                            </tr>
+                            <tr>
+                                <td>Scroll Behavior</td>
+                                <td>Stays fixed during scrolling</td>
+                            </tr>
+                            <tr>
+                                <td>Common Uses</td>
+                                <td>Headers, modals, chat buttons</td>
+                            </tr>
+                            <tr>
+                                <td>Z-index</td>
+                                <td>Often needs explicit value</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="comparison-card">
+                    <div class="comparison-header">
+                        <div class="comparison-icon" style="background: linear-gradient(145deg, #7c3aed, #6d28d9);">ST</div>
+                        <h3 style="font-size: 1.5rem; color: var(--text-light); margin-left: 20px;">Sticky Positioning</h3>
+                    </div>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Document Flow</td>
+                                <td>Relative until threshold</td>
+                            </tr>
+                            <tr>
+                                <td>Position Reference</td>
+                                <td>Nearest scrolling ancestor</td>
+                            </tr>
+                            <tr>
+                                <td>Scroll Behavior</td>
+                                <td>Becomes fixed after threshold</td>
+                            </tr>
+                            <tr>
+                                <td>Common Uses</td>
+                                <td>Sticky headers, table headers</td>
+                            </tr>
+                            <tr>
+                                <td>Browser Support</td>
+                                <td>Modern browsers (IE limited)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>CSS Position Property Visual Guide | Created with HTML & CSS | Blue-Black Theme | Flex Layout</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">All position values demonstrated with interactive examples and real-time visual feedback</p>
+        </footer>
+    </div>
+    
+    <!-- Fixed Demo Elements -->
+    <div class="fixed-demo-button" title="Fixed Positioning Demo">
+        Fixed
+    </div>
+    
+    <div style="position: fixed; bottom: 30px; right: 30px; background: linear-gradient(145deg, #059669, #047857); color: white; width: 70px; height: 70px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; box-shadow: 0 5px 20px rgba(5, 150, 105, 0.3); z-index: 1000;">
+        Fixed
+    </div>
+</body>
+</html>

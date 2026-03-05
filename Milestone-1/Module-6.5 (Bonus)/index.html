@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS :nth-child() Pseudo-class Summary</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            flex: 1;
+            min-width: 300px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #4b6cb7;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .syntax-card {
+            background-color: #e8f4fc;
+        }
+        
+        .examples-card {
+            background-color: #f9f7fc;
+        }
+        
+        .applications-card {
+            background-color: #f0f9f0;
+        }
+        
+        .demo-card {
+            background-color: #fff9e6;
+        }
+        
+        code {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 12px 15px;
+            border-radius: 6px;
+            display: block;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .inline-code {
+            background-color: #edf2f7;
+            color: #2d3748;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+        
+        ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .demo-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .demo-item {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .demo-nth-child-odd .demo-item:nth-child(odd) {
+            background-color: #4b6cb7;
+        }
+        
+        .demo-nth-child-even .demo-item:nth-child(even) {
+            background-color: #2ecc71;
+        }
+        
+        .demo-nth-child-3n .demo-item:nth-child(3n) {
+            background-color: #e74c3c;
+        }
+        
+        .demo-nth-child-3n-plus-1 .demo-item:nth-child(3n+1) {
+            background-color: #f39c12;
+        }
+        
+        .demo-nth-child-n-plus-4 .demo-item:nth-child(n+4) {
+            background-color: #9b59b6;
+        }
+        
+        .demo-nth-child-minus-n-plus-5 .demo-item:nth-child(-n+5) {
+            background-color: #1abc9c;
+        }
+        
+        .demo-label {
+            font-weight: bold;
+            margin-top: 15px;
+            color: #2c3e50;
+        }
+        
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CSS :nth-child() Pseudo-class</h1>
+        <p>A comprehensive guide to the powerful CSS selector for targeting elements based on their position</p>
+    </div>
+    
+    <div class="container">
+        <div class="card syntax-card">
+            <h2>Syntax & Parameters</h2>
+            <p>The <span class="inline-code">:nth-child()</span> pseudo-class matches elements based on their position among siblings.</p>
+            
+            <code>:nth-child(an+b)</code>
+            
+            <p><strong>Parameters:</strong></p>
+            <ul>
+                <li><span class="inline-code">a</span> - Cycle size (integer)</li>
+                <li><span class="inline-code">n</span> - Counter (starts at 0)</li>
+                <li><span class="inline-code">b</span> - Offset value (integer)</li>
+                <li>The formula selects every <em>a</em>th child starting from position <em>b</em></li>
+            </ul>
+            
+            <p><strong>Keyword values:</strong></p>
+            <ul>
+                <li><span class="inline-code">odd</span> - Selects odd-numbered elements (1, 3, 5, ...)</li>
+                <li><span class="inline-code">even</span> - Selects even-numbered elements (2, 4, 6, ...)</li>
+            </ul>
+        </div>
+        
+        <div class="card examples-card">
+            <h2>Common Examples</h2>
+            
+            <p><strong>Select every 3rd element:</strong></p>
+            <code>li:nth-child(3n) { color: red; }</code>
+            
+            <p><strong>Select every 2nd element starting from the 1st:</strong></p>
+            <code>div:nth-child(2n+1) { background: blue; }</code>
+            
+            <p><strong>Select the first 3 elements:</strong></p>
+            <code>p:nth-child(-n+3) { font-weight: bold; }</code>
+            
+            <p><strong>Select elements starting from the 4th:</strong></p>
+            <code>tr:nth-child(n+4) { opacity: 0.8; }</code>
+            
+            <p><strong>Select only the 5th element:</strong></p>
+            <code>span:nth-child(5) { border: 2px solid green; }</code>
+        </div>
+        
+        <div class="card applications-card">
+            <h2>Practical Applications</h2>
+            <ul>
+                <li><strong>Zebra-striping tables:</strong> Alternate row colors for better readability</li>
+                <li><strong>Grid layouts:</strong> Control margins/padding on specific columns</li>
+                <li><strong>Navigation menus:</strong> Style specific menu items differently</li>
+                <li><strong>Image galleries:</strong> Create mosaic layouts with varying sizes</li>
+                <li><strong>Form styling:</strong> Highlight every other form field for better scanning</li>
+                <li><strong>Responsive design:</strong> Change layout at specific breakpoints based on item count</li>
+            </ul>
+            
+            <div class="note">
+                <strong>Note:</strong> The count includes <em>all</em> children, not just elements of the same type. Use <span class="inline-code">:nth-of-type()</span> if you need to filter by element type.
+            </div>
+        </div>
+    </div>
+    
+    <div class="card demo-card">
+        <h2>Interactive Demonstration</h2>
+        <p>Below are visual examples of different :nth-child() selectors applied to a set of 12 items:</p>
+        
+        <div class="demo-label">:nth-child(odd) - Selects odd items</div>
+        <div class="demo-container demo-nth-child-odd">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+            <div class="demo-item">4</div>
+            <div class="demo-item">5</div>
+            <div class="demo-item">6</div>
+            <div class="demo-item">7</div>
+            <div class="demo-item">8</div>
+            <div class="demo-item">9</div>
+            <div class="demo-item">10</div>
+            <div class="demo-item">11</div>
+            <div class="demo-item">12</div>
+        </div>
+        
+        <div class="demo-label">:nth-child(even) - Selects even items</div>
+        <div class="demo-container demo-nth-child-even">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+            <div class="demo-item">4</div>
+            <div class="demo-item">5</div>
+            <div class="demo-item">6</div>
+            <div class="demo-item">7</div>
+            <div class="demo-item">8</div>
+            <div class="demo-item">9</div>
+            <div class="demo-item">10</div>
+            <div class="demo-item">11</div>
+            <div class="demo-item">12</div>
+        </div>
+        
+        <div class="demo-label">:nth-child(3n) - Every 3rd item (3, 6, 9, 12)</div>
+        <div class="demo-container demo-nth-child-3n">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+            <div class="demo-item">4</div>
+            <div class="demo-item">5</div>
+            <div class="demo-item">6</div>
+            <div class="demo-item">7</div>
+            <div class="demo-item">8</div>
+            <div class="demo-item">9</div>
+            <div class="demo-item">10</div>
+            <div class="demo-item">11</div>
+            <div class="demo-item">12</div>
+        </div>
+        
+        <div class="demo-label">:nth-child(3n+1) - Every 3rd item starting from 1st (1, 4, 7, 10)</div>
+        <div class="demo-container demo-nth-child-3n-plus-1">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+            <div class="demo-item">4</div>
+            <div class="demo-item">5</div>
+            <div class="demo-item">6</div>
+            <div class="demo-item">7</div>
+            <div class="demo-item">8</div>
+            <div class="demo-item">9</div>
+            <div class="demo-item">10</div>
+            <div class="demo-item">11</div>
+            <div class="demo-item">12</div>
+        </div>
+        
+        <div class="demo-label">:nth-child(n+4) - Items from the 4th onward (4, 5, 6, ..., 12)</div>
+        <div class="demo-container demo-nth-child-n-plus-4">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+            <div class="demo-item">4</div>
+            <div class="demo-item">5</div>
+            <div class="demo-item">6</div>
+            <div class="demo-item">7</div>
+            <div class="demo-item">8</div>
+            <div class="demo-item">9</div>
+            <div class="demo-item">10</div>
+            <div class="demo-item">11</div>
+            <div class="demo-item">12</div>
+        </div>
+        
+        <div class="demo-label">:nth-child(-n+5) - First 5 items only (1, 2, 3, 4, 5)</div>
+        <div class="demo-container demo-nth-child-minus-n-plus-5">
+            <div class="demo-item">1</div>
+            <div class="demo-item">2</div>
+            <div class="demo-item">3</div>
+            <div class="demo-item">4</div>
+            <div class="demo-item">5</div>
+            <div class="demo-item">6</div>
+            <div class="demo-item">7</div>
+            <div class="demo-item">8</div>
+            <div class="demo-item">9</div>
+            <div class="demo-item">10</div>
+            <div class="demo-item">11</div>
+            <div class="demo-item">12</div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>CSS :nth-child() Pseudo-class Summary | Created with HTML & CSS | Browser support: All modern browsers and IE9+</p>
+    </div>
+</body>
+</html>

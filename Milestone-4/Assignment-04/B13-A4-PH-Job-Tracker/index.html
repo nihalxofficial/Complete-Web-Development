@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-04 | Job Tracker</title>
+
+    <!-- Google Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+
+    <!-- Tailwind CSS and DaisyUI -->
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+</head>
+<body class=" bg-[#F8FAFC] pt-[60px] pb-[130px]">
+
+    <header class="w-10/12 mx-auto border-b-2 border-gray-200 pb-7.5">
+        <h2 class="font-bold text-3xl mb-5">Job Application Tracker</h2>
+        <div class="header-container grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-white p-5 rounded-md border-gray-200 shadow-sm">
+                <h2 class="font-bold text-sm mb-2">Total</h2>
+                <h2 id="total-counter" class="font-bold text-2xl">8</h2>
+            </div>
+            <div class="bg-white p-5 rounded-md border-gray-200 shadow-sm">
+                <h2 class="font-bold text-sm mb-2">Interview</h2>
+                <h2 id="interview-counter" class="font-bold text-2xl text-green-500">0</h2>
+            </div>
+            <div class="bg-white p-5 rounded-md border-gray-200 shadow-sm">
+                <h2 class="font-bold text-sm mb-2">Rejected</h2>
+                <h2 id="rejected-counter" class="font-bold text-2xl text-red-500">0</h2>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="w-10/12 mx-auto pt-7.5 ">
+            <div class="mb-6 flex justify-between items-center">
+                <h2 class="text-[20px] font-bold ">Available Jobs</h2>
+                <h2><span id="total-job-listings">8</span> Jobs</h2>
+            </div>
+            <div class="tab gap-4 mb-4 -ml-2.5">
+                <button onclick="toggle('all-filter-btn')" id="all-filter-btn" class="btn btn-primary px-6 py-2">All</button>
+                <button onclick="toggle('interview-filter-btn')" id="interview-filter-btn" class="btn px-6 py-2">Interview</button>
+                <button onclick="toggle('rejected-filter-btn')" id="rejected-filter-btn" class="btn px-6 py-2">Rejected</button>
+            </div>
+        </section>
+
+        <section id="job-listings" class="w-10/12 mx-auto space-y-4">
+            <!-- Card 01 -->
+            <!-- 
+            
+            -->
+        </section>
+
+        <section id="filtered-listings" class="w-10/12 mx-auto space-y-4 hidden">
+            
+        </section>
+
+        <section class="no-jobs w-10/12 mx-auto mt-4 hidden">
+            <div class="text-center bg-white py-20 rounded-md border-gray-200 shadow-md"> 
+                <img src="./assets/images/jobs.png" alt="" class="mx-auto mb-5">
+                <h2 class="mb-1 font-semibold text-2xl text-[#002C5C]">No jobs available</h2>
+                <p class="text-lg text-[#64748B]">Check back soon for new job opportunities</p>
+            </div>
+        </section>
+    </main>
+    
+
+
+    <script src="./scripts/machine.js"></script>
+    <script src="./scripts/script.js"></script>
+    
+</body>
+</html>

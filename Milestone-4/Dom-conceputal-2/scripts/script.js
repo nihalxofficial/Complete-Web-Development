@@ -125,6 +125,7 @@ mainContainer.addEventListener("click", function(event){
             if(currentStatus== "thriving-filter-button"){
                 renderThriving();
             }
+            
             calculateCount();
             // renderStruggling();
             }
