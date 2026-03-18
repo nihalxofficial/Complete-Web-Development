@@ -1,0 +1,19 @@
+.foodsContainer{
+    background-color: rgba(206, 206, 206, 0.534);
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    width: 75%;
+}
+
+.foodsSection{
+    width: 1200px;
+    margin: 60px auto;
+    display: flex;
+    gap: 20px;
+}
+
+.cartsContainer{
+    width: 25%;
+}
