@@ -1,0 +1,29 @@
+Tailwind CSS v4 + Vite: ভার্সন কনফ্লিক্ট সমস্যার সমাধান
+Vite প্রজেক্টটি স্বাভাবিকভাবে তৈরি করে নিন:
+npm create vite@latest my-project
+cd my-project
+২. package.json এ Overrides যোগ করা
+আপনার package.json ফাইলটি ওপেন করুন। এখানে আমরা npm-কে বলে দেব যেন সে Vite-এর ভার্সন নিয়ে কোনো ঝামেলা না করে। ফাইলের শেষে নিচের অংশটুকু যোগ করুন:
+"overrides": {
+"@tailwindcss/vite": {
+"vite": "$vite"
+}
+}
+(এর মানে হলো: Tailwind-এর জন্য আলাদা Vite ভার্সন না খুঁজে, প্রজেক্টে যেটা আছে সেটাই ব্যবহার করো।)
+৩. Tailwind v4 ইন্সটল করা
+এখন টার্মিনালে নিচের কমান্ডটি দিয়ে প্রয়োজনীয় প্যাকেজগুলো ইন্সটল করে নিন:
+npm install tailwindcss @tailwindcss/vite
+৪. Vite কনফিগারেশন
+vite.config.js ফাইলে গিয়ে প্লাগিনটি কানেক্ট করুন:
+import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+plugins: [
+tailwindcss(),
+],
+})
+৫. CSS এ ইম্পোর্ট করা
+আপনার মেইন CSS ফাইলে (যেমন index.css বা app.css) শুধু এই এক লাইন যোগ করুন:
+@import "tailwindcss";
+এখন npm run dev দিয়ে দেখুন কোনো এরর ছাড়াই Tailwind v4 স্মুথলি কাজ করছে।

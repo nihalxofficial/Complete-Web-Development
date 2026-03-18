@@ -1,0 +1,41 @@
+[
+    {
+      "id": "basic",
+      "name": "Basic",
+      "price": 0,
+      "description": "Good for beginners",
+      "features": [
+        "1 Project",
+        "Basic Dashboard",
+        "1GB Storage",
+        "Email Support"
+      ]
+    },
+    {
+      "id": "standard",
+      "name": "Standard",
+      "price": 12,
+      "description": "Best for small teams",
+      "popular": true,
+      "features": [
+        "10 Projects",
+        "Advanced Dashboard",
+        "10GB Storage",
+        "Priority Support",
+        "Analytics"
+      ]
+    },
+    {
+      "id": "premium",
+      "name": "Premium",
+      "price": 30,
+      "description": "For businesses",
+      "features": [
+        "Unlimited Projects",
+        "Full Dashboard",
+        "Unlimited Storage",
+        "24/7 Support",
+        "API Access"
+      ]
+    }
+  ]
