@@ -1,0 +1,202 @@
+[
+  {
+    "playerName": "Virat Kohli",
+    "country": "India",
+    "playerType": "Batsman",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm medium",
+    "rating": 95,
+    "price": 1500000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Babar Azam",
+    "country": "Pakistan",
+    "playerType": "Batsman",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm offbreak",
+    "rating": 92,
+    "price": 1400000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Joe Root",
+    "country": "England",
+    "playerType": "Batsman",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm offbreak",
+    "rating": 90,
+    "price": 1300000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Kane Williamson",
+    "country": "New Zealand",
+    "playerType": "Batsman",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm offbreak",
+    "rating": 91,
+    "price": 1350000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Ben Stokes",
+    "country": "England",
+    "playerType": "All-rounder",
+    "battingStyle": "Left-hand bat",
+    "bowlingStyle": "Right-arm fast-medium",
+    "rating": 93,
+    "price": 1450000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Shakib Al Hasan",
+    "country": "Bangladesh",
+    "playerType": "All-rounder",
+    "battingStyle": "Left-hand bat",
+    "bowlingStyle": "Slow left-arm orthodox",
+    "rating": 94,
+    "price": 1200000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Steve Smith",
+    "country": "Australia",
+    "playerType": "Batsman",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm legbreak",
+    "rating": 93,
+    "price": 1420000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "David Warner",
+    "country": "Australia",
+    "playerType": "Batsman",
+    "battingStyle": "Left-hand bat",
+    "bowlingStyle": "Right-arm legbreak",
+    "rating": 89,
+    "price": 1250000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Rohit Sharma",
+    "country": "India",
+    "playerType": "Batsman",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm offbreak",
+    "rating": 91,
+    "price": 1380000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "KL Rahul",
+    "country": "India",
+    "playerType": "Wicketkeeper-Batsman",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm medium",
+    "rating": 88,
+    "price": 1100000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Jos Buttler",
+    "country": "England",
+    "playerType": "Wicketkeeper-Batsman",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "None",
+    "rating": 92,
+    "price": 1320000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Quinton de Kock",
+    "country": "South Africa",
+    "playerType": "Wicketkeeper-Batsman",
+    "battingStyle": "Left-hand bat",
+    "bowlingStyle": "None",
+    "rating": 89,
+    "price": 1150000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Hardik Pandya",
+    "country": "India",
+    "playerType": "All-rounder",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm fast-medium",
+    "rating": 90,
+    "price": 1280000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Rashid Khan",
+    "country": "Afghanistan",
+    "playerType": "Bowler",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm legbreak googly",
+    "rating": 93,
+    "price": 1400000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Jasprit Bumrah",
+    "country": "India",
+    "playerType": "Bowler",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm fast",
+    "rating": 94,
+    "price": 1450000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Trent Boult",
+    "country": "New Zealand",
+    "playerType": "Bowler",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Left-arm fast-medium",
+    "rating": 91,
+    "price": 1300000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Shaheen Afridi",
+    "country": "Pakistan",
+    "playerType": "Bowler",
+    "battingStyle": "Left-hand bat",
+    "bowlingStyle": "Left-arm fast",
+    "rating": 92,
+    "price": 1350000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Mitchell Starc",
+    "country": "Australia",
+    "playerType": "Bowler",
+    "battingStyle": "Left-hand bat",
+    "bowlingStyle": "Left-arm fast",
+    "rating": 90,
+    "price": 1280000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Glenn Maxwell",
+    "country": "Australia",
+    "playerType": "All-rounder",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm offbreak",
+    "rating": 91,
+    "price": 1300000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  },
+  {
+    "playerName": "Andre Russell",
+    "country": "West Indies",
+    "playerType": "All-rounder",
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm fast",
+    "rating": 92,
+    "price": 1380000,
+    "playerImg": "https://img.freepik.com/premium-vector/dynamic-vector-illustration-cricket-batsman-action-portrayed-with-fluidity-vibrancy_1235303-2181.jpg"
+  }
+]
