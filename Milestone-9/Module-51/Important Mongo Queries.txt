@@ -1,0 +1,5 @@
+1. Comparison Operators
+2. Array Operators
+3. Update Operators
+4. Sorting
+5. Group Aggregation
